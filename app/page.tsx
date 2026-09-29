@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-
+import NotesGrid from "@/components/NotesGrid";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#FFF9E6] p-6">
@@ -16,6 +16,7 @@ export default function Home() {
           </p>
 
           {/* Notes Grid will go here in the next step */}
+          <NotesGrid />
         </section>
       </div>
     </main>
