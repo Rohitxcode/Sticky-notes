@@ -4,9 +4,10 @@ import NoteCard from "./NoteCard";
 interface NotesGridProps {
   notes: Note[];
   onDelete: (id: string) => void;
+  onEdit: (note: Note) => void;
 }
 
-export default function NotesGrid({ notes, onDelete }: NotesGridProps) {
+export default function NotesGrid({ notes, onDelete, onEdit }: NotesGridProps) {
   if (notes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
@@ -23,7 +24,12 @@ export default function NotesGrid({ notes, onDelete }: NotesGridProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {notes.map((note) => (
-        <NoteCard key={note.id} note={note} onDelete={onDelete} />
+        <NoteCard
+          key={note.id}
+          note={note}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
       ))}
     </div>
   );

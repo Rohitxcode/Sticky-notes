@@ -6,9 +6,10 @@ import type { Note } from "@/types/Notes";
 interface NoteCardProps {
   note: Note;
   onDelete: (id: string) => void;
+  onEdit: (note: Note) => void;
 }
 
-export default function NoteCard({ note, onDelete }: NoteCardProps) {
+export default function NoteCard({ note, onDelete, onEdit }: NoteCardProps) {
   const date = new Date(note.createdAt).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -16,8 +17,11 @@ export default function NoteCard({ note, onDelete }: NoteCardProps) {
   });
 
   return (
-    <div className="group relative rounded-lg border border-[#e0d5b7] bg-[#fdfbf5] p-4 shadow-[0_2px_8px_rgba(61,47,31,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(61,47,31,0.12)]">
-      <h2 className="font-serif text-lg font-semibold text-[#3d2f1f] line-clamp-2">
+    <div
+      onClick={() => onEdit(note)}
+      className="group parchment relative cursor-pointer rounded-lg p-4 transition hover:-translate-y-0.5"
+    >
+      <h2 className="font-serif text-lg font-semibold text-[#3d2f1f] line-clamp-2 parchment-ink">
         {note.title || "Untitled"}
       </h2>
 
@@ -31,7 +35,10 @@ export default function NoteCard({ note, onDelete }: NoteCardProps) {
         </span>
 
         <button
-          onClick={() => onDelete(note.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(note.id);
+          }}
           className="opacity-0 transition group-hover:opacity-100 text-[#8b6f47] hover:text-red-600"
           aria-label="Delete note"
         >

@@ -3,7 +3,7 @@ export interface Note {
   title: string;
   content: string;
   createdAt: number;
-  updatedAt: number;
-  color?: string;
-  pinned?: boolean;
+  // updatedAt: number;
+  // color?: string;
+  // pinned?: boolean;
 }
