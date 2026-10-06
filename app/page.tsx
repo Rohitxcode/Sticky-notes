@@ -89,7 +89,6 @@ export default function Home() {
           onEdit={handleEdit}
         />
       </div>
-
       {modalOpen && (
         <NoteModal
           note={editingNote}
